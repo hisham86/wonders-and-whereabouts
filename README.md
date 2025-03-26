@@ -31,7 +31,7 @@ Simply visit the [Lovable Project](https://lovable.dev/projects/a5b7699c-246f-4c
 
 Changes made via Lovable will be committed automatically to this repo.
 
-**Use your preferred IDE**
+**Use your preferred IDE with GitHub**
 
 If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
 
@@ -53,19 +53,29 @@ npm i
 npm run dev
 ```
 
+**GitHub Integration Features**
+
+This project supports seamless GitHub integration:
+
+- **Automatic Syncing**: Changes made in Lovable are automatically committed to the connected GitHub repository
+- **Two-way Sync**: Commits pushed to GitHub will be reflected in your Lovable project
+- **Branch Support**: Work on different branches to test features before merging to main
+- **Pull Requests**: Use GitHub's PR workflow for code reviews before integrating changes
+- **GitHub Actions**: Set up CI/CD workflows to automate testing and deployment
+
 **Edit a file directly in GitHub**
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+- Navigate to the desired file(s)
+- Click the "Edit" button (pencil icon) at the top right of the file view
+- Make your changes and commit the changes
 
 **Use GitHub Codespaces**
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+- Navigate to the main page of your repository
+- Click on the "Code" button (green button) near the top right
+- Select the "Codespaces" tab
+- Click on "New codespace" to launch a new Codespace environment
+- Edit files directly within the Codespace and commit and push your changes once you're done
 
 ## What technologies are used for this project?
 
