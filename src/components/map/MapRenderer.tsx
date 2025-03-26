@@ -77,7 +77,7 @@ const MapRenderer = ({ showPangea, onMapLoad, onPangeaMapLoad }: MapRendererProp
       {...handlers}
       onTouchMove={(e) => handlers.onTouchMove(e, containerRef.current?.getBoundingClientRect())}
     >
-      {/* World map image */}
+      {/* World map image - always render but control visibility */}
       <MapImage 
         type="world"
         isVisible={!showPangea}
@@ -86,7 +86,7 @@ const MapRenderer = ({ showPangea, onMapLoad, onPangeaMapLoad }: MapRendererProp
         transform={transform}
       />
 
-      {/* Pangea map image */}
+      {/* Pangea map image - always render but control visibility */}
       <MapImage 
         type="pangea"
         isVisible={showPangea}
