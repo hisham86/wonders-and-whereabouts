@@ -7,9 +7,18 @@ import Footer from "@/components/Footer";
 import { AnimatePresence } from "framer-motion";
 
 const Index = () => {
-  // This script import is not needed since framer-motion is already imported
-  // and included in the project dependencies
-  
+  // Add framer-motion library
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://unpkg.com/framer-motion@10.12.4/dist/framer-motion.js";
+    script.async = true;
+    document.body.appendChild(script);
+    
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col">
       <AnimatePresence>

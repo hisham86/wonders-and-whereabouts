@@ -1,6 +1,6 @@
 
 import { motion } from "framer-motion";
-import { Twitter, Github, Linkedin, Coffee, Globe } from "lucide-react";
+import { Twitter, Github, Linkedin } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -19,15 +19,6 @@ const Footer = () => {
             Built by Hisham using <a href="https://twitter.com/lovable_dev" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">Lovable</a>
           </div>
           <div className="flex items-center space-x-4">
-            <a 
-              href="https://career-spotlight-portfolio.lovable.app/" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-gray-500 hover:text-green-500 transition-colors"
-              aria-label="Personal Website"
-            >
-              <Globe size={16} />
-            </a>
             <a 
               href="https://twitter.com/hisham" 
               target="_blank" 
@@ -54,15 +45,6 @@ const Footer = () => {
               aria-label="LinkedIn"
             >
               <Linkedin size={16} />
-            </a>
-            <a 
-              href="https://buymeacoffee.com/HishamCato" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-gray-500 hover:text-amber-500 transition-colors"
-              aria-label="Buy Me a Coffee"
-            >
-              <Coffee size={16} />
             </a>
           </div>
         </div>
