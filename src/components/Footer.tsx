@@ -1,6 +1,6 @@
 
 import { motion } from "framer-motion";
-import { Twitter, Github, Linkedin } from "lucide-react";
+import { Twitter, Github, Linkedin, Coffee } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -45,6 +45,15 @@ const Footer = () => {
               aria-label="LinkedIn"
             >
               <Linkedin size={16} />
+            </a>
+            <a 
+              href="https://buymeacoffee.com/HishamCato" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-gray-500 hover:text-amber-500 transition-colors"
+              aria-label="Buy Me a Coffee"
+            >
+              <Coffee size={16} />
             </a>
           </div>
         </div>
