@@ -1,8 +1,25 @@
-# Welcome to your Lovable project
+
+# Wonders and Whereabouts
+
+An interactive world map application that showcases wonders of the world and their antipodes (opposite points on Earth). Explore ancient and modern wonders, see their exact opposite locations, and view how these locations appeared in the Pangea supercontinent era.
 
 ## Project info
 
 **URL**: https://lovable.dev/projects/a5b7699c-246f-4c53-b506-903f7707e6c5
+
+## Screenshots
+
+### World Map View
+![World Map View](https://i.imgur.com/placeholder1.jpg)
+*Interactive world map displaying ancient and modern wonders with their antipode locations.*
+
+### Pangea View
+![Pangea View](https://i.imgur.com/placeholder2.jpg)
+*See how wonder locations appeared when all continents were connected as Pangea.*
+
+### Wonder Information
+![Wonder Detail](https://i.imgur.com/placeholder3.jpg)
+*Detailed information about each wonder with connection lines to antipode locations.*
 
 ## How can I edit this code?
 
@@ -52,13 +69,14 @@ npm run dev
 
 ## What technologies are used for this project?
 
-This project is built with .
+This project is built with:
 
 - Vite
 - TypeScript
 - React
 - shadcn-ui
 - Tailwind CSS
+- Framer Motion
 
 ## How can I deploy this project?
 
