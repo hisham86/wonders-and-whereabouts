@@ -2,13 +2,12 @@
 import { useCallback, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import { Wonder, getAncientWonders, getNewWonders } from "@/utils/wonders";
-import { getPangeaCoordinates } from "@/utils/mapCoordinates";
-import WonderMarker from "./WonderMarker";
-import AntipodeMarker from "./AntipodeMarker";
 import WonderCard from "./WonderCard";
 import MapControls from "./MapControls";
 import MapRenderer from "./map/MapRenderer";
 import MapLegend from "./map/MapLegend";
+import MarkerContainer from "./map/MarkerContainer";
+import ConnectionLine from "./map/ConnectionLine";
 
 const WorldMap = () => {
   const [selectedWonder, setSelectedWonder] = useState<Wonder | null>(null);
@@ -58,55 +57,19 @@ const WorldMap = () => {
 
           {/* Map overlay with wonders */}
           <div className="absolute inset-0 pointer-events-none">
-            <div className="relative w-full h-full">
-              {/* Wonder markers */}
-              {visibleWonders.map(wonder => {
-                // Get the appropriate coordinates based on the current map view
-                const coordinates = showPangea 
-                  ? getPangeaCoordinates(wonder)
-                  : { longitude: wonder.location.longitude, latitude: wonder.location.latitude };
-                
-                return (
-                  <div key={wonder.id} className="pointer-events-auto">
-                    <WonderMarker 
-                      wonder={wonder} 
-                      onClick={handleWonderSelect} 
-                      isSelected={selectedWonder?.id === wonder.id}
-                      delayed={true}
-                      customCoordinates={coordinates}
-                    />
-                  </div>
-                );
-              })}
-
-              {/* Antipode markers - only show on modern map */}
-              {showAntipodes && !showPangea && visibleWonders.map(wonder => (
-                <div key={`antipode-${wonder.id}`} className="pointer-events-auto">
-                  <AntipodeMarker 
-                    wonder={wonder} 
-                    onClick={handleWonderSelect} 
-                    isSelected={selectedWonder?.id === wonder.id}
-                    delayed={true}
-                  />
-                </div>
-              ))}
-
-              {/* Connection lines between wonders and antipodes - only on modern map */}
-              {showAntipodes && !showPangea && selectedWonder && (
-                <svg className="absolute inset-0 w-full h-full pointer-events-none z-5">
-                  <line
-                    x1={`${((selectedWonder.location.longitude + 180) / 360) * 100}%`}
-                    y1={`${((selectedWonder.location.latitude * -1) + 90) / 180 * 100}%`}
-                    x2={`${((selectedWonder.antipode.longitude + 180) / 360) * 100}%`}
-                    y2={`${((selectedWonder.antipode.latitude * -1) + 90) / 180 * 100}%`}
-                    stroke={selectedWonder.type === 'ancient' ? "#3b82f6" : "#10b981"}
-                    strokeWidth="1"
-                    strokeDasharray="5,5"
-                    strokeOpacity="0.4"
-                  />
-                </svg>
-              )}
-            </div>
+            <MarkerContainer 
+              visibleWonders={visibleWonders}
+              showAntipodes={showAntipodes}
+              showPangea={showPangea}
+              selectedWonder={selectedWonder}
+              onWonderSelect={handleWonderSelect}
+            />
+            
+            <ConnectionLine 
+              selectedWonder={selectedWonder} 
+              showAntipodes={showAntipodes} 
+              showPangea={showPangea} 
+            />
           </div>
 
           {/* Selected wonder info panel */}
