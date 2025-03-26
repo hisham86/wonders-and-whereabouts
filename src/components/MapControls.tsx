@@ -1,7 +1,7 @@
 
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
-import { MapIcon, Globe, ArrowLeftRight } from "lucide-react";
+import { MapIcon, Globe, ArrowLeftRight, Clock } from "lucide-react";
 import { Button } from "./ui/button";
 import { ToggleGroup, ToggleGroupItem } from "./ui/toggle-group";
 
@@ -70,6 +70,13 @@ const MapControls = ({
               </ToggleGroupItem>
             </ToggleGroup>
           </div>
+          
+          {showPangea && (
+            <div className="flex items-center text-xs text-amber-600 mt-1.5 ml-1">
+              <Clock size={12} className="mr-1" />
+              <span>~250 million years ago</span>
+            </div>
+          )}
         </div>
         
         <div>
