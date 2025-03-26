@@ -1,10 +1,10 @@
-
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { useState, useRef, useEffect } from "react";
 import { useMapTransform } from "@/hooks/use-map-transform";
 import { ZoomIn, ZoomOut, RefreshCw } from "lucide-react";
 import { Button } from "../ui/button";
+import { Skeleton } from "../ui/skeleton";
 
 interface MapRendererProps {
   showPangea: boolean;
@@ -22,11 +22,13 @@ const MapRenderer = ({ showPangea, onMapLoad, onPangeaMapLoad }: MapRendererProp
   const { transform, handleZoom, handlePan, resetTransform } = useMapTransform(1);
   
   const handleMapLoad = () => {
+    console.log("Main map loaded");
     setMapLoaded(true);
     onMapLoad();
   };
 
   const handlePangeaMapLoad = () => {
+    console.log("Pangea map loaded");
     setPangeaMapLoaded(true);
     onPangeaMapLoad();
   };
@@ -147,52 +149,44 @@ const MapRenderer = ({ showPangea, onMapLoad, onPangeaMapLoad }: MapRendererProp
       }}
     >
       {/* World map image */}
-      <motion.div 
+      <div 
         className="absolute inset-0 w-full h-full flex items-center justify-center"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: !showPangea && mapLoaded ? 1 : 0 }}
-        transition={{ duration: 1 }}
         style={{
-          scale: transform.scale,
-          x: transform.x,
-          y: transform.y
+          transform: `scale(${transform.scale}) translate(${transform.x / transform.scale}px, ${transform.y / transform.scale}px)`,
+          transformOrigin: 'center',
         }}
       >
         <img 
           src="https://upload.wikimedia.org/wikipedia/commons/8/83/Equirectangular_projection_SW.jpg" 
           alt="World Map" 
           className={cn(
-            "w-full h-full object-cover transition-opacity duration-1000", 
+            "w-full h-full object-contain transition-opacity duration-1000", 
             !showPangea && mapLoaded ? "opacity-100" : "opacity-0"
           )}
           onLoad={handleMapLoad}
           draggable="false"
         />
-      </motion.div>
+      </div>
 
       {/* Pangea map image */}
-      <motion.div 
+      <div 
         className="absolute inset-0 w-full h-full flex items-center justify-center"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: showPangea && pangeaMapLoaded ? 1 : 0 }}
-        transition={{ duration: 1 }}
         style={{
-          scale: transform.scale,
-          x: transform.x,
-          y: transform.y
+          transform: `scale(${transform.scale}) translate(${transform.x / transform.scale}px, ${transform.y / transform.scale}px)`,
+          transformOrigin: 'center',
         }}
       >
         <img 
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Pangaea_continents.svg/1200px-Pangaea_continents.svg.png" 
           alt="Pangea Map" 
           className={cn(
-            "w-full h-full object-cover transition-opacity duration-1000", 
+            "w-full h-full object-contain transition-opacity duration-1000", 
             showPangea && pangeaMapLoaded ? "opacity-100" : "opacity-0"
           )}
           onLoad={handlePangeaMapLoad}
           draggable="false"
         />
-      </motion.div>
+      </div>
 
       {/* Loading skeleton */}
       {(!mapLoaded || (showPangea && !pangeaMapLoaded)) && (
