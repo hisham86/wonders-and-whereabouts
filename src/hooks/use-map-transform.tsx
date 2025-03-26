@@ -15,6 +15,9 @@ export const useMapTransform = (initialScale = 1) => {
   });
 
   const handleZoom = useCallback((newScale: number, clientX?: number, clientY?: number, containerRect?: DOMRect) => {
+    // Ensure scale stays within reasonable limits
+    const clampedScale = Math.min(Math.max(newScale, 0.5), 4);
+    
     setTransform(prev => {
       // If clientX/Y are provided, zoom toward that point
       if (clientX !== undefined && clientY !== undefined && containerRect) {
@@ -23,12 +26,12 @@ export const useMapTransform = (initialScale = 1) => {
         const zoomPointY = clientY - containerRect.top - prev.y;
         
         // Calculate new position to zoom toward the cursor
-        const scaleDiff = newScale / prev.scale;
+        const scaleDiff = clampedScale / prev.scale;
         const newX = clientX - containerRect.left - zoomPointX * scaleDiff;
         const newY = clientY - containerRect.top - zoomPointY * scaleDiff;
         
         return {
-          scale: newScale,
+          scale: clampedScale,
           x: newX,
           y: newY
         };
@@ -37,7 +40,7 @@ export const useMapTransform = (initialScale = 1) => {
       // Simple zoom without position adjustment
       return {
         ...prev,
-        scale: newScale
+        scale: clampedScale
       };
     });
   }, []);

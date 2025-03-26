@@ -22,11 +22,13 @@ const MapRenderer = ({ showPangea, onMapLoad, onPangeaMapLoad }: MapRendererProp
   const { transform, handleZoom, handlePan, resetTransform } = useMapTransform(1);
   
   const handleMapLoad = () => {
+    console.log("World map loaded");
     setMapLoaded(true);
     onMapLoad();
   };
 
   const handlePangeaMapLoad = () => {
+    console.log("Pangea map loaded");
     setPangeaMapLoaded(true);
     onPangeaMapLoad();
   };
@@ -125,6 +127,24 @@ const MapRenderer = ({ showPangea, onMapLoad, onPangeaMapLoad }: MapRendererProp
     lastTouchDistanceRef.current = null;
   };
 
+  // Pre-load the images to ensure they're cached
+  useEffect(() => {
+    const worldMapUrl = "https://upload.wikimedia.org/wikipedia/commons/8/83/Equirectangular_projection_SW.jpg";
+    const pangeaMapUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Pangaea_continents.svg/1200px-Pangaea_continents.svg.png";
+    
+    const worldMapImg = new Image();
+    worldMapImg.src = worldMapUrl;
+    worldMapImg.onload = () => {
+      console.log("World map preloaded");
+    };
+    
+    const pangeaMapImg = new Image();
+    pangeaMapImg.src = pangeaMapUrl;
+    pangeaMapImg.onload = () => {
+      console.log("Pangea map preloaded");
+    };
+  }, []);
+
   return (
     <div 
       ref={containerRef}
@@ -162,7 +182,7 @@ const MapRenderer = ({ showPangea, onMapLoad, onPangeaMapLoad }: MapRendererProp
           src="https://upload.wikimedia.org/wikipedia/commons/8/83/Equirectangular_projection_SW.jpg" 
           alt="World Map" 
           className={cn(
-            "w-full h-full object-cover transition-opacity duration-1000", 
+            "w-full h-full object-contain transition-opacity duration-1000", 
             !showPangea && mapLoaded ? "opacity-100" : "opacity-0"
           )}
           onLoad={handleMapLoad}
@@ -186,7 +206,7 @@ const MapRenderer = ({ showPangea, onMapLoad, onPangeaMapLoad }: MapRendererProp
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Pangaea_continents.svg/1200px-Pangaea_continents.svg.png" 
           alt="Pangea Map" 
           className={cn(
-            "w-full h-full object-cover transition-opacity duration-1000", 
+            "w-full h-full object-contain transition-opacity duration-1000", 
             showPangea && pangeaMapLoaded ? "opacity-100" : "opacity-0"
           )}
           onLoad={handlePangeaMapLoad}

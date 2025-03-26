@@ -1,5 +1,5 @@
 
-import { useCallback, useState } from "react";
+import { useCallback, useState, useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
 import { Wonder, getAncientWonders, getNewWonders } from "@/utils/wonders";
 import { cn } from "@/lib/utils";
@@ -24,9 +24,25 @@ const WorldMap = () => {
   const ancientWonders = getAncientWonders();
   const newWonders = getNewWonders();
   
+  // Log when component mounts
+  useEffect(() => {
+    console.log("WorldMap component mounted");
+    return () => console.log("WorldMap component unmounted");
+  }, []);
+  
   const handleWonderSelect = useCallback((wonder: Wonder) => {
     setSelectedWonder(prev => prev?.id === wonder.id ? null : wonder);
   }, []);
+
+  const handleMapLoad = () => {
+    console.log("Main map loaded");
+    setMapLoaded(true);
+  };
+
+  const handlePangeaMapLoad = () => {
+    console.log("Pangea map loaded");
+    setPangeaMapLoaded(true);
+  };
 
   const visibleWonders = [
     ...(showAncient ? ancientWonders : []),
@@ -54,26 +70,28 @@ const WorldMap = () => {
           {/* Map Renderer Component */}
           <MapRenderer 
             showPangea={showPangea}
-            onMapLoad={() => setMapLoaded(true)}
-            onPangeaMapLoad={() => setPangeaMapLoaded(true)}
+            onMapLoad={handleMapLoad}
+            onPangeaMapLoad={handlePangeaMapLoad}
           />
 
-          {/* Map overlay with wonders */}
-          <div className="absolute inset-0 pointer-events-none">
-            <MarkerContainer 
-              visibleWonders={visibleWonders}
-              showAntipodes={showAntipodes}
-              showPangea={showPangea}
-              selectedWonder={selectedWonder}
-              onWonderSelect={handleWonderSelect}
-            />
-            
-            <ConnectionLine 
-              selectedWonder={selectedWonder} 
-              showAntipodes={showAntipodes} 
-              showPangea={showPangea} 
-            />
-          </div>
+          {/* Map overlay with wonders - only render when maps are loaded */}
+          {(mapLoaded || (showPangea && pangeaMapLoaded)) && (
+            <div className="absolute inset-0 pointer-events-none">
+              <MarkerContainer 
+                visibleWonders={visibleWonders}
+                showAntipodes={showAntipodes}
+                showPangea={showPangea}
+                selectedWonder={selectedWonder}
+                onWonderSelect={handleWonderSelect}
+              />
+              
+              <ConnectionLine 
+                selectedWonder={selectedWonder} 
+                showAntipodes={showAntipodes} 
+                showPangea={showPangea} 
+              />
+            </div>
+          )}
 
           {/* Selected wonder info panel */}
           <AnimatePresence>
