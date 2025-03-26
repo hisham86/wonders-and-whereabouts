@@ -1,12 +1,44 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import { useEffect } from "react";
+import { motion } from "framer-motion";
+import Header from "@/components/Header";
+import WorldMap from "@/components/WorldMap";
+import Footer from "@/components/Footer";
+import { AnimatePresence } from "framer-motion";
 
 const Index = () => {
+  // Add framer-motion library
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://unpkg.com/framer-motion@10.12.4/dist/framer-motion.js";
+    script.async = true;
+    document.body.appendChild(script);
+    
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen flex flex-col">
+      <AnimatePresence>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="flex-1 flex flex-col"
+        >
+          <Header />
+          
+          <main className="flex-1 flex flex-col">
+            <div className="flex-1 relative h-[700px] md:h-[800px]">
+              <WorldMap />
+            </div>
+          </main>
+          
+          <Footer />
+        </motion.div>
+      </AnimatePresence>
     </div>
   );
 };
