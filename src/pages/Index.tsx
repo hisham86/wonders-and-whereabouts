@@ -31,7 +31,7 @@ const Index = () => {
           <Header />
           
           <main className="flex-1 flex flex-col">
-            <div className="flex-1 relative h-[calc(100vh-200px)] min-h-[500px]">
+            <div className="flex-1 relative h-[700px] md:h-[800px]">
               <WorldMap />
             </div>
           </main>
