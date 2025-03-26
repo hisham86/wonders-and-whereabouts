@@ -1,7 +1,9 @@
 
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
-import { MapIcon, Globe } from "lucide-react";
+import { MapIcon, Globe, ArrowLeftRight } from "lucide-react";
+import { Button } from "./ui/button";
+import { ToggleGroup, ToggleGroupItem } from "./ui/toggle-group";
 
 interface MapControlsProps {
   showAncient: boolean;
@@ -33,20 +35,40 @@ const MapControls = ({
     >
       <div className="flex flex-col space-y-4">
         <div>
-          <div className="text-xs font-medium uppercase text-gray-500 mb-1">Map Type</div>
-          <div className="flex items-center space-x-3">
-            <button
-              onClick={onTogglePangea}
-              className={cn(
-                "px-3 py-1 text-xs rounded-full transition-all border flex items-center gap-1.5",
-                showPangea
-                  ? "bg-amber-500 text-white border-amber-500"
-                  : "border-amber-500 text-amber-500 bg-amber-500/10"
-              )}
-            >
-              {showPangea ? <MapIcon size={14} /> : <Globe size={14} />}
-              {showPangea ? "Pangea View" : "Modern View"}
-            </button>
+          <div className="text-xs font-medium uppercase text-gray-500 mb-2">Map Type</div>
+          <div className="flex items-center">
+            <ToggleGroup type="single" value={showPangea ? "pangea" : "modern"}>
+              <ToggleGroupItem 
+                value="modern" 
+                onClick={() => !showPangea ? null : onTogglePangea()}
+                className={cn("flex items-center gap-1.5", 
+                  !showPangea ? "bg-primary/10 text-primary" : ""
+                )}
+              >
+                <Globe size={14} />
+                <span className="text-xs">Modern</span>
+              </ToggleGroupItem>
+              
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                onClick={onTogglePangea}
+                className="px-1 h-8 mx-1"
+              >
+                <ArrowLeftRight size={12} />
+              </Button>
+              
+              <ToggleGroupItem 
+                value="pangea" 
+                onClick={() => showPangea ? null : onTogglePangea()}
+                className={cn("flex items-center gap-1.5", 
+                  showPangea ? "bg-amber-500/10 text-amber-500" : ""
+                )}
+              >
+                <MapIcon size={14} />
+                <span className="text-xs">Pangea</span>
+              </ToggleGroupItem>
+            </ToggleGroup>
           </div>
         </div>
         
