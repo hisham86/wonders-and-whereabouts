@@ -54,28 +54,26 @@ const MapRenderer = ({ showPangea, onMapLoad, onPangeaMapLoad }: MapRendererProp
     return () => container.removeEventListener('wheel', handleWheel);
   }, [transform.scale, handleZoom]);
 
-  // Pre-load the images to ensure they're cached
+  // Always preload both images regardless of which one is displayed
   useEffect(() => {
     const worldMapUrl = "https://upload.wikimedia.org/wikipedia/commons/8/83/Equirectangular_projection_SW.jpg";
     const pangeaMapUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Pangaea_continents.svg/1200px-Pangaea_continents.svg.png";
     
-    const worldMapImg = new Image();
-    worldMapImg.src = worldMapUrl;
-    worldMapImg.onload = () => {
-      console.log("World map preloaded");
+    const preloadImage = (url: string, label: string) => {
+      const img = new Image();
+      img.src = url;
+      img.onload = () => console.log(`${label} preloaded`);
+      img.onerror = (e) => console.error(`Error loading ${label}:`, e);
     };
     
-    const pangeaMapImg = new Image();
-    pangeaMapImg.src = pangeaMapUrl;
-    pangeaMapImg.onload = () => {
-      console.log("Pangea map preloaded");
-    };
+    preloadImage(worldMapUrl, "World map");
+    preloadImage(pangeaMapUrl, "Pangea map");
   }, []);
 
   return (
     <div 
       ref={containerRef}
-      className="absolute inset-0 overflow-hidden"
+      className="absolute inset-0 overflow-hidden bg-gray-50 dark:bg-gray-800"
       {...handlers}
       onTouchMove={(e) => handlers.onTouchMove(e, containerRef.current?.getBoundingClientRect())}
     >
@@ -99,7 +97,7 @@ const MapRenderer = ({ showPangea, onMapLoad, onPangeaMapLoad }: MapRendererProp
 
       {/* Loading skeleton */}
       <MapLoadingSkeleton 
-        isLoading={!mapLoaded || (showPangea && !pangeaMapLoaded)}
+        isLoading={(!mapLoaded && !showPangea) || (showPangea && !pangeaMapLoaded)}
         type={showPangea ? "pangea" : "world"}
       />
       

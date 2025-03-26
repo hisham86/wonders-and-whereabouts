@@ -21,7 +21,7 @@ const MapImage = ({ type, isVisible, isLoaded, onLoad, transform }: MapImageProp
       className="absolute inset-0 w-full h-full flex items-center justify-center"
       initial={{ opacity: 0 }}
       animate={{ opacity: isVisible && isLoaded ? 1 : 0 }}
-      transition={{ duration: 1 }}
+      transition={{ duration: 0.5 }}
       style={{
         scale: transform.scale,
         x: transform.x,
@@ -32,7 +32,7 @@ const MapImage = ({ type, isVisible, isLoaded, onLoad, transform }: MapImageProp
         src={src} 
         alt={type === "world" ? "World Map" : "Pangea Map"}
         className={cn(
-          "w-full h-full object-contain transition-opacity duration-1000", 
+          "max-w-full max-h-full object-contain",
           isVisible && isLoaded ? "opacity-100" : "opacity-0"
         )}
         onLoad={onLoad}

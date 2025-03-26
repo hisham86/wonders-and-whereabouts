@@ -27,8 +27,8 @@ export const useMapTransform = (initialScale = 1) => {
         
         // Calculate new position to zoom toward the cursor
         const scaleDiff = clampedScale / prev.scale;
-        const newX = clientX - containerRect.left - zoomPointX * scaleDiff;
-        const newY = clientY - containerRect.top - zoomPointY * scaleDiff;
+        const newX = prev.x - (zoomPointX * (scaleDiff - 1));
+        const newY = prev.y - (zoomPointY * (scaleDiff - 1));
         
         return {
           scale: clampedScale,
