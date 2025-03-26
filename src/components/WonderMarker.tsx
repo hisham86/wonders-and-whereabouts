@@ -9,20 +9,34 @@ interface WonderMarkerProps {
   onClick: (wonder: Wonder) => void;
   isSelected: boolean;
   delayed?: boolean;
+  customCoordinates?: {
+    longitude: number;
+    latitude: number;
+  };
 }
 
-const WonderMarker = ({ wonder, onClick, isSelected, delayed = false }: WonderMarkerProps) => {
+const WonderMarker = ({ 
+  wonder, 
+  onClick, 
+  isSelected, 
+  delayed = false,
+  customCoordinates 
+}: WonderMarkerProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const typeClass = wonder.type === 'ancient' ? 'bg-wonder-ancient' : 'bg-wonder-new';
 
   const animationDelay = delayed ? 0.2 * wonder.id : 0;
+  
+  // Use custom coordinates if provided, otherwise use the wonder's location
+  const longitude = customCoordinates?.longitude ?? wonder.location.longitude;
+  const latitude = customCoordinates?.latitude ?? wonder.location.latitude;
 
   return (
     <motion.div 
       className="absolute transform -translate-x-1/2 -translate-y-1/2 z-10 cursor-pointer"
       style={{
-        left: `${((wonder.location.longitude + 180) / 360) * 100}%`,
-        top: `${((wonder.location.latitude * -1) + 90) / 180 * 100}%`,
+        left: `${((longitude + 180) / 360) * 100}%`,
+        top: `${((latitude * -1) + 90) / 180 * 100}%`,
       }}
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
