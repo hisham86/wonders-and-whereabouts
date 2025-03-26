@@ -1,4 +1,3 @@
-
 export type WonderType = 'ancient' | 'new';
 
 export interface Wonder {
@@ -18,6 +17,7 @@ export interface Wonder {
   description: string;
   shortDescription: string;
   imagePlaceholder?: string;
+  imageUrl?: string;
 }
 
 export const wonders: Wonder[] = [
@@ -37,7 +37,8 @@ export const wonders: Wonder[] = [
       description: "South Pacific Ocean, east of New Zealand"
     },
     description: "The Great Pyramid of Giza is the oldest and largest of the three pyramids in the Giza pyramid complex. It is the oldest of the Seven Wonders of the Ancient World, and the only one to remain largely intact.",
-    shortDescription: "The oldest and only surviving ancient wonder, built as a tomb for Pharaoh Khufu."
+    shortDescription: "The oldest and only surviving ancient wonder, built as a tomb for Pharaoh Khufu.",
+    imageUrl: "https://images.unsplash.com/photo-1503177119275-0aa32b3a9368?q=80&w=1470&auto=format&fit=crop"
   },
   {
     id: 2,
@@ -54,7 +55,8 @@ export const wonders: Wonder[] = [
       description: "South Pacific Ocean, northeast of Easter Island"
     },
     description: "The Hanging Gardens of Babylon were one of the Seven Wonders of the Ancient World. They were described as a remarkable feat of engineering with an ascending series of tiered gardens containing a wide variety of trees, shrubs, and vines.",
-    shortDescription: "Legendary terraced gardens that may have been created by King Nebuchadnezzar II for his wife."
+    shortDescription: "Legendary terraced gardens that may have been created by King Nebuchadnezzar II for his wife.",
+    imageUrl: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1470&auto=format&fit=crop"
   },
   {
     id: 3,
@@ -71,7 +73,8 @@ export const wonders: Wonder[] = [
       description: "South Pacific Ocean, south of Hawaii"
     },
     description: "The Statue of Zeus at Olympia was a giant seated figure, about 13 m tall, made by the Greek sculptor Phidias around 435 BC at the sanctuary of Olympia, Greece, and erected in the Temple of Zeus there.",
-    shortDescription: "A monumental statue of Zeus, king of the Greek gods, made of ivory and gold."
+    shortDescription: "A monumental statue of Zeus, king of the Greek gods, made of ivory and gold.",
+    imageUrl: "https://images.unsplash.com/photo-1530960740985-fde845261c6f?q=80&w=1470&auto=format&fit=crop"
   },
   {
     id: 4,
@@ -88,7 +91,8 @@ export const wonders: Wonder[] = [
       description: "South Pacific Ocean, southeast of Hawaii"
     },
     description: "The Temple of Artemis was a Greek temple dedicated to the goddess Artemis. It was located in Ephesus (near the modern town of Selçuk in present-day Turkey) and was completely rebuilt three times before its final destruction in 401 AD.",
-    shortDescription: "A Greek temple dedicated to Artemis, rebuilt several times before its final destruction."
+    shortDescription: "A Greek temple dedicated to Artemis, rebuilt several times before its final destruction.",
+    imageUrl: "https://images.unsplash.com/photo-1558731718-a65737d89036?q=80&w=1470&auto=format&fit=crop"
   },
   {
     id: 5,
@@ -105,7 +109,8 @@ export const wonders: Wonder[] = [
       description: "South Pacific Ocean, southeast of Hawaii"
     },
     description: "The Mausoleum at Halicarnassus was a tomb built between 353 and 350 BC at Halicarnassus (present Bodrum, Turkey) for Mausolus, a satrap in the Persian Empire, and his sister-wife Artemisia II of Caria.",
-    shortDescription: "An elaborate tomb built for Mausolus, a Persian satrap, and his wife Artemisia."
+    shortDescription: "An elaborate tomb built for Mausolus, a Persian satrap, and his wife Artemisia.",
+    imageUrl: "https://images.unsplash.com/photo-1524338198850-8a2ff63aaceb?q=80&w=1470&auto=format&fit=crop"
   },
   {
     id: 6,
@@ -122,7 +127,8 @@ export const wonders: Wonder[] = [
       description: "South Pacific Ocean, southeast of Hawaii"
     },
     description: "The Colossus of Rhodes was a statue of the Greek sun-god Helios, erected in the city of Rhodes, on the Greek island of the same name, by Chares of Lindos in 280 BC.",
-    shortDescription: "A massive statue of the Greek god Helios that stood over 30 meters tall."
+    shortDescription: "A massive statue of the Greek god Helios that stood over 30 meters tall.",
+    imageUrl: "https://images.unsplash.com/photo-1516575334481-f85287c2c82d?q=80&w=1374&auto=format&fit=crop"
   },
   {
     id: 7,
@@ -139,7 +145,8 @@ export const wonders: Wonder[] = [
       description: "South Pacific Ocean, east of New Zealand"
     },
     description: "The Lighthouse of Alexandria, sometimes called the Pharos of Alexandria, was a lighthouse built by the Ptolemaic Kingdom, during the reign of Ptolemy II Philadelphus (280–247 BC). It was one of the tallest man-made structures in the world for many centuries.",
-    shortDescription: "One of the tallest structures of the ancient world, guiding sailors into Alexandria's harbor."
+    shortDescription: "One of the tallest structures of the ancient world, guiding sailors into Alexandria's harbor.",
+    imageUrl: "https://images.unsplash.com/photo-1551801841-ecad875a5142?q=80&w=1364&auto=format&fit=crop"
   },
 
   // New Wonders
@@ -158,7 +165,8 @@ export const wonders: Wonder[] = [
       description: "Southern Atlantic Ocean, east of Falklands"
     },
     description: "The Great Wall of China is a series of fortifications built along the historical northern borders of ancient Chinese states and Imperial China as protection against various nomadic groups from the Eurasian Steppe.",
-    shortDescription: "A 13,000+ mile fortification built across northern China, spanning over 2,000 years of construction."
+    shortDescription: "A 13,000+ mile fortification built across northern China, spanning over 2,000 years of construction.",
+    imageUrl: "https://images.unsplash.com/photo-1508804185872-d7badad00f7d?q=80&w=1470&auto=format&fit=crop"
   },
   {
     id: 9,
@@ -175,7 +183,8 @@ export const wonders: Wonder[] = [
       description: "South Pacific Ocean, east of New Zealand"
     },
     description: "Petra is a historical and archaeological city in southern Jordan. It is adjacent to the mountain of Jabal Al-Madbah, in a basin surrounded by mountains forming the eastern flank of the Arabah valley running from the Dead Sea to the Gulf of Aqaba.",
-    shortDescription: "An ancient city carved into pink sandstone cliffs, established around 312 BCE."
+    shortDescription: "An ancient city carved into pink sandstone cliffs, established around 312 BCE.",
+    imageUrl: "https://images.unsplash.com/photo-1579606096268-64f8e094579d?q=80&w=1478&auto=format&fit=crop"
   },
   {
     id: 10,
@@ -192,7 +201,8 @@ export const wonders: Wonder[] = [
       description: "Northwest Pacific Ocean, southwest of Minamitorishima"
     },
     description: "Christ the Redeemer is an Art Deco statue of Jesus Christ in Rio de Janeiro, Brazil, created by French sculptor Paul Landowski and built by Brazilian engineer Heitor da Silva Costa, in collaboration with French engineer Albert Caquot.",
-    shortDescription: "A 30-meter tall Art Deco statue of Jesus Christ overlooking Rio de Janeiro."
+    shortDescription: "A 30-meter tall Art Deco statue of Jesus Christ overlooking Rio de Janeiro.",
+    imageUrl: "https://images.unsplash.com/photo-1564659907532-6b5f98c8e70f?q=80&w=1374&auto=format&fit=crop"
   },
   {
     id: 11,
@@ -209,7 +219,8 @@ export const wonders: Wonder[] = [
       description: "South China Sea, southeast of Vietnam"
     },
     description: "Machu Picchu is a 15th-century Inca citadel, located in the Eastern Cordillera of southern Peru, on a 2,430-metre (7,970 ft) mountain ridge. It was most likely built as an estate for the Inca emperor Pachacuti (1438–1472).",
-    shortDescription: "A 15th-century Incan citadel set high in the Andes Mountains, showing remarkable engineering."
+    shortDescription: "A 15th-century Incan citadel set high in the Andes Mountains, showing remarkable engineering.",
+    imageUrl: "https://images.unsplash.com/photo-1526392060635-9d6019884377?q=80&w=1470&auto=format&fit=crop"
   },
   {
     id: 12,
@@ -226,7 +237,8 @@ export const wonders: Wonder[] = [
       description: "Indian Ocean, southwest of Andaman Islands"
     },
     description: "Chichen Itza was a large pre-Columbian city built by the Maya people of the Terminal Classic period. The archaeological site is located in Tinúm Municipality, Yucatán State, Mexico.",
-    shortDescription: "A massive Maya city featuring the pyramid of Kukulcan, built between 800-900 CE."
+    shortDescription: "A massive Maya city featuring the pyramid of Kukulcan, built between 800-900 CE.",
+    imageUrl: "https://images.unsplash.com/photo-1518638150340-f706e86654de?q=80&w=1467&auto=format&fit=crop"
   },
   {
     id: 13,
@@ -243,7 +255,8 @@ export const wonders: Wonder[] = [
       description: "South Pacific Ocean, southwest of Tonga"
     },
     description: "The Colosseum, also known as the Flavian Amphitheatre, is an oval amphitheatre in the centre of the city of Rome, Italy. Built of travertine limestone, tuff, and brick-faced concrete, it was the largest amphitheatre ever built at the time and held 50,000 to 80,000 spectators.",
-    shortDescription: "An iconic oval amphitheater in Rome, completed around 80 CE, used for gladiatorial contests."
+    shortDescription: "An iconic oval amphitheater in Rome, completed around 80 CE, used for gladiatorial contests.",
+    imageUrl: "https://images.unsplash.com/photo-1552832230-c0197dd311b5?q=80&w=1396&auto=format&fit=crop"
   },
   {
     id: 14,
@@ -260,7 +273,8 @@ export const wonders: Wonder[] = [
       description: "South Pacific Ocean, northwest of Easter Island"
     },
     description: "The Taj Mahal is an ivory-white marble mausoleum on the south bank of the Yamuna river in the Indian city of Agra. It was commissioned in 1632 by the Mughal emperor, Shah Jahan, to house the tomb of his favourite wife, Mumtaz Mahal.",
-    shortDescription: "An ivory-white marble mausoleum built by Emperor Shah Jahan in memory of his wife."
+    shortDescription: "An ivory-white marble mausoleum built by Emperor Shah Jahan in memory of his wife.",
+    imageUrl: "https://images.unsplash.com/photo-1564507592333-c60657eea523?q=80&w=1471&auto=format&fit=crop"
   }
 ];
 

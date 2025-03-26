@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import { Wonder } from "@/utils/wonders";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
+import { AspectRatio } from "./ui/aspect-ratio";
 
 interface WonderMarkerProps {
   wonder: Wonder;
@@ -73,7 +74,18 @@ const WonderMarker = ({
             exit={{ opacity: 0, y: -5 }}
             transition={{ duration: 0.2 }}
           >
-            <div className="glass-panel rounded-lg px-3 py-2 text-center">
+            <div className="glass-panel rounded-lg px-3 py-2 text-center overflow-hidden">
+              {wonder.imageUrl && (
+                <div className="w-full mb-2">
+                  <AspectRatio ratio={16/9} className="rounded-md overflow-hidden">
+                    <img 
+                      src={wonder.imageUrl} 
+                      alt={wonder.name} 
+                      className="w-full h-full object-cover"
+                    />
+                  </AspectRatio>
+                </div>
+              )}
               <span className="text-xs font-semibold block truncate">{wonder.name}</span>
               <span className="text-[10px] text-gray-500 block truncate">{wonder.location.name}</span>
             </div>

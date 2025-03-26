@@ -2,6 +2,7 @@
 import { cn } from "@/lib/utils";
 import { Wonder, getHumanReadableCoordinates } from "@/utils/wonders";
 import { motion } from "framer-motion";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 interface WonderCardProps {
   wonder: Wonder;
@@ -20,7 +21,7 @@ const WonderCard = ({ wonder, onClose }: WonderCardProps) => {
   return (
     <motion.div 
       className={cn(
-        "glass-panel rounded-xl w-full max-w-md border-2", 
+        "glass-panel rounded-xl w-full max-w-md border-2 overflow-hidden", 
         typeClass
       )}
       initial={{ opacity: 0, y: 20 }}
@@ -28,6 +29,19 @@ const WonderCard = ({ wonder, onClose }: WonderCardProps) => {
       exit={{ opacity: 0, y: 20 }}
       transition={{ type: "spring", stiffness: 500, damping: 30 }}
     >
+      {/* Image section */}
+      {wonder.imageUrl && (
+        <div className="w-full">
+          <AspectRatio ratio={16/9}>
+            <img 
+              src={wonder.imageUrl} 
+              alt={wonder.name} 
+              className="w-full h-full object-cover"
+            />
+          </AspectRatio>
+        </div>
+      )}
+
       <div className="flex justify-between items-start p-4">
         <div className="flex items-center space-x-3">
           <div className={cn(
