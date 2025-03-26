@@ -8,6 +8,7 @@ import MapRenderer from "./map/MapRenderer";
 import MapLegend from "./map/MapLegend";
 import MarkerContainer from "./map/MarkerContainer";
 import ConnectionLine from "./map/ConnectionLine";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const WorldMap = () => {
   const [selectedWonder, setSelectedWonder] = useState<Wonder | null>(null);
@@ -17,6 +18,7 @@ const WorldMap = () => {
   const [showPangea, setShowPangea] = useState(false);
   const [mapLoaded, setMapLoaded] = useState(false);
   const [pangeaMapLoaded, setPangeaMapLoaded] = useState(false);
+  const isMobile = useIsMobile();
 
   const ancientWonders = getAncientWonders();
   const newWonders = getNewWonders();
@@ -75,7 +77,10 @@ const WorldMap = () => {
           {/* Selected wonder info panel */}
           <AnimatePresence>
             {selectedWonder && (
-              <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30 w-full max-w-md px-4">
+              <div className={cn(
+                "absolute left-1/2 transform -translate-x-1/2 z-30 px-4",
+                isMobile ? "bottom-4 w-full" : "bottom-8 w-full max-w-md"
+              )}>
                 <WonderCard 
                   wonder={selectedWonder} 
                   onClose={() => setSelectedWonder(null)} 
