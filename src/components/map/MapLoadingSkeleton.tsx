@@ -10,8 +10,8 @@ const MapLoadingSkeleton = ({ isLoading, type }: MapLoadingSkeletonProps) => {
   if (!isLoading) return null;
   
   return (
-    <div className="absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-gray-900 z-10">
-      <div className="text-center p-4 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
+    <div className="absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-gray-900">
+      <div className="text-center p-4">
         <div className="animate-pulse text-gray-500 font-medium mb-2">
           Loading {type === "pangea" ? "Pangea" : "world"} map...
         </div>
