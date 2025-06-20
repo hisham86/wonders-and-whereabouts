@@ -14,62 +14,60 @@ const MapRenderer = ({ showPangea, onMapLoad, onPangeaMapLoad }: MapRendererProp
   const [pangeaMapLoaded, setPangeaMapLoaded] = useState(false);
 
   const handleMapLoad = () => {
+    console.log("World map loaded");
     setMapLoaded(true);
     onMapLoad();
   };
 
   const handlePangeaMapLoad = () => {
+    console.log("Pangea map loaded");
     setPangeaMapLoaded(true);
     onPangeaMapLoad();
   };
 
   return (
-    <>
+    <div className="absolute inset-0 w-full h-full">
       {/* World map image */}
-      <motion.div 
-        className="absolute inset-0 w-full h-full flex items-center justify-center"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: !showPangea && mapLoaded ? 1 : 0 }}
-        transition={{ duration: 1 }}
+      <div 
+        className={cn(
+          "absolute inset-0 w-full h-full transition-opacity duration-1000",
+          !showPangea ? "opacity-100 z-10" : "opacity-0 z-0"
+        )}
       >
         <img 
           src="https://upload.wikimedia.org/wikipedia/commons/8/83/Equirectangular_projection_SW.jpg" 
           alt="World Map" 
-          className={cn(
-            "w-full h-full object-cover transition-opacity duration-1000", 
-            !showPangea && mapLoaded ? "opacity-100" : "opacity-0"
-          )}
+          className="w-full h-full object-cover"
           onLoad={handleMapLoad}
+          onError={(e) => console.error("Failed to load world map:", e)}
         />
-      </motion.div>
+      </div>
 
       {/* Pangea map image */}
-      <motion.div 
-        className="absolute inset-0 w-full h-full flex items-center justify-center"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: showPangea && pangeaMapLoaded ? 1 : 0 }}
-        transition={{ duration: 1 }}
+      <div 
+        className={cn(
+          "absolute inset-0 w-full h-full transition-opacity duration-1000",
+          showPangea ? "opacity-100 z-10" : "opacity-0 z-0"
+        )}
       >
         <img 
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Pangaea_continents.svg/1200px-Pangaea_continents.svg.png" 
           alt="Pangea Map" 
-          className={cn(
-            "w-full h-full object-cover transition-opacity duration-1000", 
-            showPangea && pangeaMapLoaded ? "opacity-100" : "opacity-0"
-          )}
+          className="w-full h-full object-cover"
           onLoad={handlePangeaMapLoad}
+          onError={(e) => console.error("Failed to load pangea map:", e)}
         />
-      </motion.div>
+      </div>
 
-      {/* Loading skeleton */}
-      {(!mapLoaded || (showPangea && !pangeaMapLoaded)) && (
-        <div className="absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-gray-900">
+      {/* Loading skeleton - only show when no maps are loaded */}
+      {!mapLoaded && !pangeaMapLoaded && (
+        <div className="absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-gray-900 z-20">
           <div className="animate-pulse text-gray-500">
-            Loading {showPangea ? "Pangea" : "world"} map...
+            Loading map...
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

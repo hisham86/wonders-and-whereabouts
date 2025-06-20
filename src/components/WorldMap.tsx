@@ -1,6 +1,7 @@
 
 import { useCallback, useState } from "react";
 import { AnimatePresence } from "framer-motion";
+import { cn } from "@/lib/utils";
 import { Wonder, getAncientWonders, getNewWonders } from "@/utils/wonders";
 import WonderCard from "./WonderCard";
 import MapControls from "./MapControls";
